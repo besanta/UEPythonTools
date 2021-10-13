@@ -22,9 +22,9 @@
   
   args
   ------
-    -d		Delete StaticMeshActors after creation
-		-p		Define Prototype of the actor type (ex: Blueprint'/Game/BP_InstancedStaticMeshActor.BP_InstancedStaticMeshActor')
-		-h		Print help
+	-d		Delete StaticMeshActors after creation
+	-p		Define Prototype of the actor type (ex: Blueprint'/Game/BP_InstancedStaticMeshActor.BP_InstancedStaticMeshActor')
+	-h		Print help
 
 ##  ISMFromSelection.py
 
@@ -45,5 +45,5 @@
 
   args
   ------
-    -p		Define Prototype of the actor type (ex: Blueprint'/Game/BP_InstancedStaticMeshActor.BP_InstancedStaticMeshActor')
-		-h		Print this help
+	-p		Define Prototype of the actor type (ex: Blueprint'/Game/BP_InstancedStaticMeshActor.BP_InstancedStaticMeshActor')
+	-h		Print this help
