@@ -39,6 +39,7 @@ def spawnHISM(actors):
 	center_of_mass = actor_bounds
 	if actors and len(actors):
 		actor_instance = None
+		first_mesh_component = actors[0].static_mesh_component
 		try:
 			unreal.log('Spawn actor')
 			actor_class = unreal.EditorAssetLibrary.load_blueprint_class(class_to_load)
@@ -48,11 +49,13 @@ def spawnHISM(actors):
 			if instance_component:
 				for sm in actors:
 					instance_component.add_instance_world_space(sm.get_actor_transform())
-				first_mesh_component = actors[0].static_mesh_component
 
 				# Copy properties
 				copyProps(instance_component, first_mesh_component, props_to_copy)
+			if(first_mesh_component.static_mesh):
+				unreal.log('Rename actor %s' % (first_mesh_component.static_mesh.get_name()))
 
+				actor_instance.set_actor_label("ISM_%s" % first_mesh_component.static_mesh.get_name())
 			return actor_instance
 		except Exception as err:
 			unreal.log_error("Error during ISM Actor creation: \n\t %s" % err)
