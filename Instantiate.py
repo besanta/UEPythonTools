@@ -1,3 +1,10 @@
+"""
+version: 1.0
+author: Santamaria Nicolas (chimps.lab)
+website: https://github.com/besanta/UEPythonTools
+license: LGPL
+"""
+
 import unreal
 import sys
 import traceback
