@@ -17,8 +17,7 @@ from itertools import groupby
 # https://answers.unrealengine.com/questions/904813/python-attach-component-to-actor-or-blueunreal.log.html
 
 
-def copyMaterials(src, dest):
-	unreal.log(f' Set Materials')
+
 	# materialIndex = 0
 	# while True:
 	# 	currentMaterial = first_mesh_component.static_mesh.get_material(materialIndex)
@@ -45,7 +44,7 @@ def spawnHISM(actors):
 		actor_instance = None
 		try:
 			unreal.log('Spawn actor')
-			actor_class = unreal.EditorAssetLibrary.load_blueprint_class('/Game/BP_InstancedStaticMeshActor.BP_InstancedStaticMeshActor')
+			actor_class = unreal.EditorAssetLibrary.load_blueprint_class('/Game/Actors/ActorsTools/BP_HISM.BP_HISM')
 			actor_instance = unreal.EditorLevelLibrary.spawn_actor_from_class(actor_class, center_of_mass)
 
 			instance_component = actor_instance.get_component_by_class(unreal.HierarchicalInstancedStaticMeshComponent)
@@ -60,7 +59,8 @@ def spawnHISM(actors):
 
 			return actor_instance
 		except Exception as err:
-			unreal.log_error(f"Error during HISM Actor creation: \n\t {err}")
+			# unreal.log_error(f"Error during HISM Actor creation: \n\t {err}")
+			unreal.log_error("Error during HISM Actor creation: \n\t %s" % err)
 			if actor_instance:
 				actor_instance.destroy_actor()
 	return None
@@ -95,12 +95,13 @@ for key, group in groupby(selected_static_mesh, lambda x: x.static_mesh_componen
 	hism_actor = spawnHISM(items)
 	if hism_actor:
 		hism_component = hism_actor.get_component_by_class(unreal.HierarchicalInstancedStaticMeshComponent)
-		unreal.log(f'Spawned HISM for mesh {key} with {hism_component.get_instance_count} instances')
+		unreal.log('Spawned HISM for mesh %s with %d instances' % (key, hism_component.get_instance_count()))
 	else:
 		unreal.log_error("Error during generation")
 
-if sys.argv[1] == "-e":
-	for x in selected_static_mesh:
-		unreal.EditorLevelLibrary.destroy_actor(x)
+if len(sys.argv) > 1:
+	if sys.argv[1] == "-e":
+		for x in selected_static_mesh:
+			unreal.EditorLevelLibrary.destroy_actor(x)
 
 unreal.EditorLevelLibrary.set_selected_level_actors(selected_static_mesh)
