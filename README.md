@@ -15,8 +15,8 @@
   -------
   You have to create a small BP in your project. 
   1. New Actor (/Game/BP_InstancedStaticMeshActor)
-  2. Add HierarchicalInstancedStaticMeshComponent
-  3. Set as Root Component.
+  2. Add InstancedStaticMeshComponent (or Hierarchical)
+  3. Set as Root Component (optional).
 
   The property system does not work as expected, it is not able to transfer material override or mobility (etc).
   
@@ -40,8 +40,8 @@
   -------
   You have to create a small BP in your project. 
   1. New Actor (/Game/BP_InstancedStaticMeshActor)
-  2. Add HierarchicalInstancedStaticMeshComponent
-  3. Set as Root Component.
+  2. Add InstancedStaticMeshComponent (or Hierarchical)
+  3. Set as Root Component (optional).
 
   args
   ------
