@@ -46,4 +46,6 @@
   args
   ------
 	-p	Define Prototype of the actor type (ex: Blueprint'/Game/BP_InstancedStaticMeshActor.BP_InstancedStaticMeshActor')
+  -t	Search for SceneComponent with tag. Will add all WorldTransform of each tagged Components to ISM.\
+	-s	Search for StaticMeshComponent and add (the first found) to ISM.\
 	-h	Print this help
